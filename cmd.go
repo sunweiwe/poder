@@ -25,6 +25,11 @@ func Execute() {
 		log.Fatal("You need root privileges to run this program.")
 	}
 
+	// 创建需要使用的文件夹
+	if err := createRequiredPoderDirs(); err != nil {
+		log.Fatalf("Unable to create required directories: %v", err)
+	}
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
